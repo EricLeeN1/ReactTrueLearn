@@ -4,8 +4,10 @@ import "./item.css";
 export default class Item extends Component {
   static propTypes = {
     updateTodo: PropTypes.func.isRequired,
+    deleteTodo: PropTypes.func.isRequired,
+    item: PropTypes.object.isRequired,
   };
-  
+
   // 鼠标移入移除
   handleMouse(flag) {
     return () => {
@@ -20,6 +22,11 @@ export default class Item extends Component {
     return (e) => {
       this.props.updateTodo(id, e.target.checked);
     };
+  }
+
+  // 删除回调
+  handleDelete(id) {
+    this.props.deleteTodo(id);
   }
   state = {
     focus: false,
@@ -42,6 +49,7 @@ export default class Item extends Component {
           <span>{item.name}</span>
         </label>
         <button
+          onClick={() => this.handleDelete(item.id)}
           style={{ display: focus ? "block" : "none" }}
           className="btn btn-danger"
         >
