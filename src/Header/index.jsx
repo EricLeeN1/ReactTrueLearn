@@ -5,6 +5,11 @@ export default class Header extends Component {
   handleKeyUp = (e) => {
     const { keyCode, target } = e;
     if (keyCode !== 13) return;
+    if (!target.value.trim()) {
+      alert("输入不能为空");
+      return;
+    }
+    // 将生成数据传递给app父级组件
     this.props.addTodo({
       id: nanoid(),
       name: target.value,
