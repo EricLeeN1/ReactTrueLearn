@@ -59,6 +59,26 @@ export default class App extends Component {
     });
   };
 
+  checkedAllTodo = (chekced) => {
+    const { todos } = this.state;
+    const newTodos = todos.map((item) => {
+      return { ...item, done: chekced };
+    });
+    this.setState({
+      todos: newTodos,
+    });
+  };
+
+  clearAllDone = () => {
+    const { todos } = this.state;
+    const newTodos = todos.filter((item) => {
+      return !item.done;
+    });
+    this.setState({
+      todos: newTodos,
+    });
+  };
+
   render() {
     const { todos } = this.state;
     return (
@@ -70,7 +90,11 @@ export default class App extends Component {
             updateTodo={this.updateTodo}
             deleteTodo={this.deleteTodo}
           />
-          <Footer todos={todos} />
+          <Footer
+            todos={todos}
+            checkedAllTodo={this.checkedAllTodo}
+            clearAllDone={this.clearAllDone}
+          />
         </div>
       </div>
     );
