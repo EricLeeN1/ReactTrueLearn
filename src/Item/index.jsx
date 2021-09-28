@@ -26,7 +26,9 @@ export default class Item extends Component {
 
   // 删除回调
   handleDelete(id) {
-    this.props.deleteTodo(id);
+    if(window.confirm('确定删除吗')){
+      this.props.deleteTodo(id);
+    }
   }
   state = {
     focus: false,
