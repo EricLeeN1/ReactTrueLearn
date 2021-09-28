@@ -2,16 +2,17 @@ import React, { Component } from "react";
 
 export default class Card extends Component {
   render() {
+    const { item } = this.props
     return (
       <div className="card">
-        <a href="https://github.com/reactjs" target="_blank" rel="noreferrer">
+        <a href={item.html_url} target="_blank" rel="noreferrer">
           <img
-            src="https://avatars.githubusercontent.com/u/6412038?v=3"
+            src={item.avatar_url}
             alt="logo"
             style={{ width: "100px" }}
           />
         </a>
-        <p className="card-text">reactjs</p>
+        <p className="card-text">{item.login}</p>
       </div>
     );
   }
