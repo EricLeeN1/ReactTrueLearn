@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./item.css";
 export default class Item extends Component {
+  static propTypes = {
+    updateTodo: PropTypes.func.isRequired,
+  };
+  
   // 鼠标移入移除
   handleMouse(flag) {
     return () => {
