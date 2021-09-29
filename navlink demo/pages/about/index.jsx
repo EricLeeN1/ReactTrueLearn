@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Home extends Component {
+export default class About extends Component {
   render() {
-    console.log(this.props);
     return (
       <div>
-        Home的内容
+        About的内容
       </div>
     )
   }
