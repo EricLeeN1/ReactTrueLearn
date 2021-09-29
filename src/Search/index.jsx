@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import PubSub from "pubsub-js";
 export default class Search extends Component {
   keywordRef = React.createRef();
-  state = {
-    keyword: "",
-    lists: [],
-  };
 
   search = () => {
     //获取用户输入，(连续解构赋值+重命名)
@@ -14,7 +11,7 @@ export default class Search extends Component {
         current: { value: data },
       },
     } = this;
-    this.props.updateAppState({
+    PubSub.publish("updateState", {
       isFirst: false,
       isLoading: true,
     });
@@ -25,15 +22,15 @@ export default class Search extends Component {
         const {
           data: { items },
         } = res;
-        this.props.updateAppState({
-          isLoading: false,
+        PubSub.publish("updateState", {
           users: items,
+          isLoading: false,
         });
       })
       .catch((err) => {
-        this.props.updateAppState({
-          isLoading: false,
+        PubSub.publish("updateState", {
           err: err,
+          isLoading: false,
         });
       });
   };
