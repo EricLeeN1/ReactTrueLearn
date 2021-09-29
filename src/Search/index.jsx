@@ -4,7 +4,7 @@ import PubSub from "pubsub-js";
 export default class Search extends Component {
   keywordRef = React.createRef();
 
-  search = () => {
+  search = async () => {
     //获取用户输入，(连续解构赋值+重命名)
     const {
       keywordRef: {
@@ -16,23 +16,20 @@ export default class Search extends Component {
       isLoading: true,
     });
     // 发送网络请求
-    axios
-      .get(`/api/search/users?q=${data}`)
-      .then((res) => {
-        const {
-          data: { items },
-        } = res;
-        PubSub.publish("updateState", {
-          users: items,
-          isLoading: false,
-        });
-      })
-      .catch((err) => {
-        PubSub.publish("updateState", {
-          err: err,
-          isLoading: false,
-        });
+
+    try {
+      const response = await fetch(`/api/search/users?q=${data}`);
+      const res = await response.json();
+      PubSub.publish("updateState", {
+        users: res.items,
+        isLoading: false,
       });
+    } catch (error) {
+      PubSub.publish("updateState", {
+        err: error,
+        isLoading: false,
+      });
+    }
   };
   render() {
     return (
