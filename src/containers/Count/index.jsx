@@ -34,6 +34,7 @@ class Count extends Component {
   };
   render() {
     const { count } = this.props;
+    console.log(this.props);
     return (
       <div>
         <h2>我是Count组件</h2>
@@ -55,7 +56,7 @@ class Count extends Component {
 
 // 使用connect()()创建并暴露一个Count的容器组件
 export default connect(
-  (state) => ({ count: state }),
+  (state) => ({ count: state.count }),
 
   // mapDispatchToProps的一般写法
   // (dispatch) => ({

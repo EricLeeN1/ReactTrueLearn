@@ -1,15 +1,27 @@
 import React, { Component } from "react";
-
-export default class index extends Component {
+import { connect } from "react-redux";
+import { nanoid } from "nanoid";
+import { addPersonAction } from "../../redux/actions/person";
+class Person extends Component {
   addPerson = () => {
-    const userName = this.userName.value;
-    const userAge = this.userAge.value;
-    console.log(userName, userAge);
+    const name = this.userName.value;
+    const age = this.userAge.value;
+    const personObj = {
+      id: nanoid(),
+      name,
+      age,
+    };
+    this.props.addPersonAction(personObj);
+    this.userName.value = "";
+    this.userAge.value = "";
   };
   render() {
+    console.log(this.props);
+    const { person, personLen, count } = this.props;
     return (
       <div>
-        <h2>我是Person组件</h2>
+        <h2>我是Person组件,总人数{personLen}</h2>
+        <h2>上方Count组件,总人数{count}</h2>
         <input
           ref={(c) => (this.userName = c)}
           placeholder="输入用户姓名"
@@ -21,11 +33,24 @@ export default class index extends Component {
         <button onClick={this.addPerson}>添加用户</button>
         <hr></hr>
         <ul>
-          <li>用户01</li>
-          <li>用户02</li>
-          <li>用户03</li>
+          {person.map((item) => {
+            return (
+              <li key={item.id}>
+                {item.id}-{item.name}-{item.age}
+              </li>
+            );
+          })}
         </ul>
       </div>
     );
   }
 }
+
+export default connect(
+  (state) => ({
+    person: state.person,
+    personLen: state.person.length,
+    count: state.count,
+  }),
+  { addPersonAction }
+)(Person);

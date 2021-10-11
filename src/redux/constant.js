@@ -3,5 +3,5 @@
 
 export const INCREMENT = 'increment'
 export const DECREMENT = 'decrement'
-// export const INCREMENT = 'increment'
+export const ADD_PERSON = 'add_person'
 // export const INCREMENT = 'increment'
