@@ -1,8 +1,18 @@
 import React, { Component } from "react";
-// 引入store用于获取状态
-import store from "../../redux/store";
+
+// 引入connect用于链接UI组件与redux
+import { connect } from "react-redux";
+
+// 引入action
+import {
+  createIncrementAction,
+  createDecrementAction,
+  createIncrementAsyncAction,
+} from "../../redux/count_action";
 // 引入actionCreator,专门用于创建action对象
-export default class Count extends Component {
+
+// 编写Count的UI组件
+class Count extends Component {
   increment = () => {
     const { value } = this.selectNumber;
     this.props.createIncrementAction(value - 0);
@@ -41,3 +51,23 @@ export default class Count extends Component {
     );
   }
 }
+
+// 使用connect()()创建并暴露一个Count的容器组件
+export default connect(
+  (state) => ({ count: state }),
+
+  // mapDispatchToProps的一般写法
+  // (dispatch) => ({
+  //   createIncrementAction: (data) => dispatch(createIncrementAction(data)),
+  //   createDecrementAction: (data) => dispatch(createDecrementAction(data)),
+  //   createIncrementAsyncAction: (data) =>
+  //     dispatch(createIncrementAsyncAction(data)),
+  // })
+
+  // mapDispatchToProps的简写
+  {
+    createIncrementAction,
+    createDecrementAction,
+    createIncrementAsyncAction,
+  }
+)(Count);
