@@ -8,7 +8,7 @@ import {
   createIncrementAction,
   createDecrementAction,
   createIncrementAsyncAction,
-} from "../../redux/count_action";
+} from "../../redux/actions/count";
 // 引入actionCreator,专门用于创建action对象
 
 // 编写Count的UI组件
@@ -36,7 +36,8 @@ class Count extends Component {
     const { count } = this.props;
     return (
       <div>
-        <h1>当前求和为：{count}</h1>
+        <h2>我是Count组件</h2>
+        <h4>当前求和为：{count}</h4>
         <select ref={(c) => (this.selectNumber = c)}>
           <option value="1">1</option>
           <option value="2">2</option>

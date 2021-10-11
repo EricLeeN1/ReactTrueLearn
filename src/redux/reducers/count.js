@@ -1,6 +1,6 @@
 // 该文件是用于创建一个为Count服务的reducer,reducer的本质就是一个函数
 // reducer函数会接到两个参数，分别为：之前的状态preState，动作对象action
-import { INCREMENT, DECREMENT } from "./constant";
+import { INCREMENT, DECREMENT } from "../constant";
 const initialState = 0;
 function countReducer(preState = initialState, action) {
   // 从action对象中获取：type、data
