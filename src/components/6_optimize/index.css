@@ -1,0 +1,11 @@
+.box-a{
+  color: #fff;
+  width: 500px;
+  margin: 0 auto;
+  background-color: red;
+}
+.box-b{
+  width: 400px;
+  margin: 0 auto;
+  background-color: blue;
+}
