@@ -1,0 +1,16 @@
+.parent{
+  color: #fff;
+  width: 500px;
+  margin: 0 auto;
+  background-color: red;
+}
+.box-a{
+  width: 400px;
+  margin: 0 auto;
+  background-color: blue;
+}
+.box-b{
+  width: 400px;
+  margin: 0 auto;
+  background-color: skyblue;
+}
