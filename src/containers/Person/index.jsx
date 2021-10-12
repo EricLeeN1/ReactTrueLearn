@@ -21,7 +21,7 @@ class Person extends Component {
     return (
       <div>
         <h2>我是Person组件,总人数{personLen}</h2>
-        <h2>上方Count组件,总人数{count}</h2>
+        <h2>上方Count组件,和{count}</h2>
         <input
           ref={(c) => (this.userName = c)}
           placeholder="输入用户姓名"

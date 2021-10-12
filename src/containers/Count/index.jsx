@@ -33,11 +33,12 @@ class Count extends Component {
     this.props.createIncrementAsyncAction(value - 0);
   };
   render() {
-    const { count } = this.props;
+    const { count,person } = this.props;
     console.log(this.props);
     return (
       <div>
         <h2>我是Count组件</h2>
+        <h2>下方Person组件,总人数{person.length}</h2>
         <h4>当前求和为：{count}</h4>
         <select ref={(c) => (this.selectNumber = c)}>
           <option value="1">1</option>
@@ -56,7 +57,7 @@ class Count extends Component {
 
 // 使用connect()()创建并暴露一个Count的容器组件
 export default connect(
-  (state) => ({ count: state.count }),
+  (state) => ({ count: state.count, person: state.person }),
 
   // mapDispatchToProps的一般写法
   // (dispatch) => ({
